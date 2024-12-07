@@ -72,7 +72,10 @@ st.markdown('<div class="path">Home > CRM Dashboard > {}</div>'.format(page), un
 if page == "Customer Data Overview":
     st.markdown('<div class="header">Customer Data Overview</div>', unsafe_allow_html=True)
     st.markdown('<div class="subheader">A detailed overview of customer segmentation, CLV, purchase frequency, and churn probability.</div>', unsafe_allow_html=True)
-
+    
+    # Adding an image before the text
+    st.image("Savola.png", caption="CRM Dashboard Overview", use_column_width=True)
+    
     # Display the customer data
     st.dataframe(customer_data)
 
