@@ -309,13 +309,6 @@ if page == "Churn Prediction Report":
     cm_fig.update_layout(title='Confusion Matrix')
     st.plotly_chart(cm_fig, use_container_width=True)
     
-    # 4. Churn Drivers Analysis
-    st.markdown("### 4. Churn Drivers Analysis")
-    feature_importance = pd.Series(clf_model.feature_importances_, index=features).sort_values(ascending=False)
-    churn_importance_fig = px.bar(feature_importance, x=feature_importance.values, y=feature_importance.index,
-                                  orientation='h', title='Feature Importance for Churn Prediction')
-    st.plotly_chart(churn_importance_fig, use_container_width=True)
-    
     # 5. Impact of Marketing Interventions on Churn
     st.markdown("### 5. Impact of Marketing Interventions on Churn")
     # Simulate before and after marketing intervention
@@ -397,14 +390,6 @@ if page == "Marketing ROI Report":
                               title='Attribution Modeling - Conversions by Touchpoint')
     st.plotly_chart(attribution_fig, use_container_width=True)
     
-    # 5. Customer Acquisition Cost (CAC) vs. CLV
-    st.markdown("### 5. Customer Acquisition Cost (CAC) vs. CLV")
-    cac = customer_data['Acquisition Cost (EGP)']
-    clv = customer_data['CLV (EGP)']
-    cac_clv_fig = px.scatter(customer_data, x='Acquisition Cost (EGP)', y='CLV (EGP)',
-                             trendline='ols', title='CAC vs. CLV', color='Segment')
-    st.plotly_chart(cac_clv_fig, use_container_width=True)
-    
     st.markdown("### 📈 Marketing ROI Overview")
     st.dataframe(campaign_summary)
 
@@ -431,13 +416,6 @@ if page == "Purchase Frequency Analysis":
                                title='Average Purchase Frequency by Segment')
     st.plotly_chart(freq_segment_fig, use_container_width=True)
     
-    # 4. Correlation Between Purchase Frequency and CLV
-    st.markdown("### 4. Correlation Between Purchase Frequency and CLV")
-    correlation = customer_data['Purchase Frequency (Months)'].corr(customer_data['CLV (EGP)'])
-    st.write(f"**Correlation Coefficient:** {correlation:.2f}")
-    corr_fig = px.scatter(customer_data, x='Purchase Frequency (Months)', y='CLV (EGP)', color='Segment',
-                          trendline='ols', title='Purchase Frequency vs CLV')
-    st.plotly_chart(corr_fig, use_container_width=True)
     
     # 5. Impact of Promotions on Purchase Frequency
     st.markdown("### 5. Impact of Promotions on Purchase Frequency")
